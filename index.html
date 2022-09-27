@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction:column;
+            background-color:#414141; 
+
+        
+            height: 100vh;
+        }
+        .canvas{
+            border:2px solid black;
+             background-color:skyblue;
+            
+            
+        }
+        .text{
+            color: white;
+            font-size: 40px;
+            position: absolute;
+            top: 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="text">Bouncing Ball</div>
+    <canvas class="canvas" width="500px" height="500px"></canvas>
+    <script>
+        let canvas=document.querySelector(".canvas")
+        let ctx=canvas.getContext("2d")
+        let ball={x:0 ,y:40}
+        let speed=0
+        let speed1=0
+       
+        function drawBall(){
+            ctx.beginPath()
+            ctx.fillStyle=c
+            ctx.arc(0,0,50,0,Math.PI*2)
+            ctx.fill()
+            
+        }
+        
+        function draw(){
+            ctx.save()
+            ctx.clearRect(0,0,500,500)
+            ball.x+=5
+            ball.y+=5
+            if(ball.x>455){
+                speed=-10
+                c="blue"
+            }
+            else if(ball.x<40){
+                speed=+2
+                c="tomato"
+            }
+            else if(ball.y>455){
+                speed1=-8
+                c="hotpink"
+            }
+            else if(ball.y<40){
+                speed1=+2
+                c="chartreuse"
+            }
+            ball.x=ball.x+speed
+            ball.y=ball.y+speed1
+            ctx.translate(ball.x,ball.y)
+            drawBall()
+            ctx.restore()
+            requestAnimationFrame(draw)
+           
+        }
+        draw()
+     
+        
+       
+
+    </script>
+    
+</body>
+</html>
